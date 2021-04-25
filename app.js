@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 // Setup database connection
-mongoose.connect("mongodb+srv://" + dbUser + ":" + dbPassword + "@cluster0.o9x0h.mongodb.net/" + dbName + "?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb+srv://" + dbUser + ":" + dbPassword + "@cluster0.o9x0h.mongodb.net/" + dbName  + "?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // Setup mongoose schema
 const itemsSchema = {
