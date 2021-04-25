@@ -4,14 +4,22 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
-const PropertiesReader = require("properties-reader");
 
-// Setup sensitive information
-let properties = PropertiesReader("site.properties");
+// const PropertiesReader = require("properties-reader");
 
-let dbName = properties.get("db.name");
-let dbUser = properties.get("db.user.name");
-let dbPassword = properties.get("db.password");
+// // Setup sensitive information
+// let properties = PropertiesReader("site.properties");
+
+// let dbName = properties.get("db.name");
+// let dbUser = properties.get("db.user.name");
+// let dbPassword = properties.get("db.password");
+
+
+let info = {
+  dbUser: process.env.userName,
+  dbPassword: process.env.userPassword,
+  dbName: process.env.dbName
+}
 
 // Create express application
 const app = express();
@@ -26,7 +34,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 // Setup database connection
-mongoose.connect("mongodb+srv://" + dbUser + ":" + dbPassword + "@cluster0.o9x0h.mongodb.net/" + dbName + "?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb+srv://" + info.dbUser + ":" + info.dbPassword + "@cluster0.o9x0h.mongodb.net/" + info.dbName + "?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // Setup mongoose schema
 const itemsSchema = {
