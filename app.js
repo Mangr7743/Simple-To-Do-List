@@ -5,16 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 
-// const PropertiesReader = require("properties-reader");
-
-// // Setup sensitive information
-// let properties = PropertiesReader("site.properties");
-
-// let dbName = properties.get("db.name");
-// let dbUser = properties.get("db.user.name");
-// let dbPassword = properties.get("db.password");
-
-
+// Get db information
 let info = {
   dbUser: process.env.userName,
   dbPassword: process.env.userPassword,
